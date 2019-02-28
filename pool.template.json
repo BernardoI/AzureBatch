@@ -74,7 +74,7 @@
                 "version": "v10"
             },
             {
-                "applicationId": "blender",
+                "applicationId": "blender-linux",
                 "version": "2.79b"
             }
         ],
@@ -90,7 +90,7 @@
             },
             "resourceFiles": [
                 {
-                    "blobSource": "https://raw.githubusercontent.com/ascobie/shared-scripts/master/setup-blender-pool.sh",
+                    "blobSource": "https://raw.githubusercontent.com/BernardoI/AzureBatch/master/setup-blender-pool.sh",
                     "filePath": "setup-blender-pool.sh"
                 }
             ]
