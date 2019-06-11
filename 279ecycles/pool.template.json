@@ -90,7 +90,7 @@
             },
             "resourceFiles": [
               {
-                "blobSource": "https://github.com/BernardoI/AzureBatch/blob/master/setup-blender-pool.sh",
+                "blobSource": "https://raw.githubusercontent.com/BernardoI/AzureBatch/master/setup-blender-pool.sh",
                 "filePath": "setup-blender-pool.sh"
               }
             ]
