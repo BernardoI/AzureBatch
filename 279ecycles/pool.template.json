@@ -1,0 +1,99 @@
+{
+    "parameters": {
+        "poolId": {
+            "type": "string",
+            "defaultValue": "blender-ubuntu",
+            "metadata": {
+                "description": "Id of the pool"
+            }
+        },
+        "dedicatedVmCount": {
+            "type": "int",
+            "defaultValue": 1,
+            "metadata": {
+                "description": "The number of dedicated nodes in the Azure Batch pool"
+            }
+        },
+        "lowPriorityVmCount": {
+            "type": "int",
+            "defaultValue": 0,
+            "metadata": {
+                "description": "The number of low priority nodes in the Azure Batch pool"
+            }
+        },
+        "nodeSize": {
+            "type": "string",
+            "metadata": {
+                "description": "The size of the nodes that run the tasks in the pool"
+            },
+            "defaultValue": "Standard_D4_v2",
+            "allowedValues": [
+                "Standard_D1_v2",
+                "Standard_D2_v2",
+                "Standard_D3_v2",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_D11_v2",
+                "Standard_D12_v2",
+                "Standard_D13_v2",
+                "Standard_D14_v2",
+                "Standard_D15_v2",
+                "Standard_F4",
+                "Standard_F8",
+                "Standard_F16",
+                "Standard_F4s_v2",
+                "Standard_F8s_v2",
+                "Standard_F16s_v2",
+                "Standard_F32s_v2",
+                "Standard_F64s_v2"
+            ]
+        }
+    },
+    "variables": {
+        "osType": {
+            "imageReference": {
+                "publisher": "Canonical",
+                "offer": "UbuntuServer",
+                "sku": "18.04-LTS",
+                "version": "latest"
+            },
+            "nodeAgentSKUId": "batch.node.ubuntu 18.04"
+        }
+    },
+    "pool": {
+        "id": "[parameters('poolId')]",
+        "displayName": "Blender Ubuntu standard pool",
+        "vmSize": "[parameters('nodeSize')]",
+        "virtualMachineConfiguration": "[variables('osType')]",
+        "targetDedicatedNodes": "[parameters('dedicatedVmCount')]",
+        "targetLowPriorityNodes": "[parameters('lowPriorityVmCount')]",
+        "enableAutoScale": false,
+        "applicationPackageReferences": [
+            {
+                "applicationId": "azcopy",
+                "version": "v10"
+            },
+            {
+                "applicationId": "blender-linux",
+                "version": "2.79ecycles"
+            }
+        ],
+        "startTask": {
+            "commandLine": "/bin/bash -c ./setup-blender-pool.sh",
+            "waitForSuccess": true,
+            "maxTaskRetryCount": 0,
+            "userIdentity": {
+                "autoUser": {
+                    "scope": "pool",
+                    "elevationLevel": "admin"
+                }
+            },
+            "resourceFiles": [
+                {
+                    "blobSource": "https://raw.githubusercontent.com/BernardoI/AzureBatch/master/setup-blender-pool.sh",
+                    "filePath": "setup-blender-pool.sh"
+                }
+            ]
+        }
+    }
+}
