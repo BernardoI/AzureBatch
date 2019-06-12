@@ -106,7 +106,7 @@
                 ],
                 "repeatTask": {
                     "displayName": "Frame {0}",
-                    "commandLine": "$AZ_BATCH_APP_PACKAGE_blender_linux_2_79c/blender -b \"$AZ_BATCH_JOB_PREP_WORKING_DIR/fgrp-[parameters('inputData')]/[parameters('blendFile')]\" -o \"[parameters('jobName')]_####\" -f {0} -t 0 [parameters('optionalParameters')]",
+                    "commandLine": "$AZ_BATCH_APP_PACKAGE_blender_linux_2_79c2/blender -b \"$AZ_BATCH_JOB_PREP_WORKING_DIR/fgrp-[parameters('inputData')]/[parameters('blendFile')]\" -o \"[parameters('jobName')]_####\" -f {0} -t 0 [parameters('optionalParameters')]",
                     "outputFiles": [
                         {
                             "filePattern": "../stdout.txt",
