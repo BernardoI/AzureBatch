@@ -79,7 +79,7 @@
             }
         ],
         "startTask": {
-            "commandLine": "/bin/bash -c ./setup-blender-pool-1906.sh",
+            "commandLine": "/bin/bash -c ./setup-blender-pool.sh",
             "waitForSuccess": true,
             "maxTaskRetryCount": 0,
             "userIdentity": {
